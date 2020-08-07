@@ -3,16 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // 正方形のマス目
-class Square extends React.Component {
-  render() {
-    return (
-      <button className="square" onClick = { () => { this.props.onClick()} }>
-        {/* TODO を以下の形に変更 数字が表示される */}
-        {this.props.value}
-      </button>
-    );
-  }
+// class Square extends React.Component {
+//   render() {
+//     return (
+//       <button className="square" onClick = { () => { this.props.onClick()} }>
+//         {/* TODO を以下の形に変更 数字が表示される */}
+//         {this.props.value}
+//       </button>
+//     );
+//   }
+// }
+
+function Square(props) {
+  return (
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  )
 }
+
 
 // 盤面
 class Board extends React.Component {
