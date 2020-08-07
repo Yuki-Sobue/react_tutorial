@@ -7,7 +7,8 @@ class Square extends React.Component {
   render() {
     return (
       <button className="square">
-        {/* TODO */}
+        {/* TODO を以下の形に変更 数字が表示される */}
+        {this.props.value}
       </button>
     );
   }
@@ -16,7 +17,8 @@ class Square extends React.Component {
 // 盤面
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    // return <Square />;
+    return <Square value = {i} />
   }
 
   render() {
