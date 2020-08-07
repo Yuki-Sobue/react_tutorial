@@ -4,16 +4,6 @@ import './index.css';
 
 // 正方形のマス目
 class Square extends React.Component {
-
-  // ゲームの状態管理は不要になったので、なくなりました
-  // constructor(props){
-  //   // SquareクラスはReact.Componenrのサブクラスなので、サブクラスのコンストラクタではsuperを呼ぶ
-  //   super(props)
-  //   this.state = {
-  //     value: null,
-  //   }
-  // }
-
   render() {
     return (
       <button className="square" onClick = { () => { this.props.onClick()} }>
