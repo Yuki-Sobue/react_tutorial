@@ -3,17 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // 正方形のマス目
-// class Square extends React.Component {
-//   render() {
-//     return (
-//       <button className="square" onClick = { () => { this.props.onClick()} }>
-//         {/* TODO を以下の形に変更 数字が表示される */}
-//         {this.props.value}
-//       </button>
-//     );
-//   }
-// }
-
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -61,13 +50,6 @@ class Board extends React.Component {
   }
 
   render() {
-    const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
     return (
       <div>
         <div className="status">{status}</div>
