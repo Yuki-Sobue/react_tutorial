@@ -31,6 +31,7 @@ class Board extends React.Component {
     this.state = {
       // Array(9)は9つのemptyの配列を返す fill(null)でそれをnullで満たしている
       squares: Array(9).fill(null),
+      xIsNext: true,
     }
   }
 
@@ -39,8 +40,13 @@ class Board extends React.Component {
     // => 現在の配列を変更する代わりに、配列のコピーを作成するための方便としてのslice()
     // データを直接いじるのがmutete（書き換え） 不変なのがimmutableな方法
     const squares = this.state.squares.slice();
-    squares[i] = 'X';
-    this.setState({squares: squares})
+    // xIsNextが真であれば'X' 偽であれば'O'を返す
+    squares[i] = this.state.xIsNext ? 'X' : 'O'
+    this.setState({
+      squares: squares,
+      // xIsNextを反転させる 可読性がちょっとっていう人はxIsNextをNextTurnとかにして管理してもいいかも
+      xIsNext: !this.state.xIsNext,
+    })
   }
 
   renderSquare(i) {
@@ -55,7 +61,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     return (
       <div>
         <div className="status">{status}</div>
