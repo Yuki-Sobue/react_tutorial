@@ -4,11 +4,21 @@ import './index.css';
 
 // 正方形のマス目
 class Square extends React.Component {
+
+  constructor(props){
+    // SquareクラスはReact.Componenrのサブクラスなので、サブクラスのコンストラクタではsuperを呼ぶ
+    super(props)
+    this.state = {
+      value: null,
+    }
+  }
+
   render() {
     return (
-      <button className="square" onClick = { () => {alert('click') } }>
+      // stateの値をXにする
+      <button className="square" onClick = { () => { this.setState({value: 'X'})} }>
         {/* TODO を以下の形に変更 数字が表示される */}
-        {this.props.value}
+        {this.state.value}
       </button>
     );
   }
