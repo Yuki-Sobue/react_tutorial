@@ -5,20 +5,20 @@ import './index.css';
 // 正方形のマス目
 class Square extends React.Component {
 
-  constructor(props){
-    // SquareクラスはReact.Componenrのサブクラスなので、サブクラスのコンストラクタではsuperを呼ぶ
-    super(props)
-    this.state = {
-      value: null,
-    }
-  }
+  // ゲームの状態管理は不要になったので、なくなりました
+  // constructor(props){
+  //   // SquareクラスはReact.Componenrのサブクラスなので、サブクラスのコンストラクタではsuperを呼ぶ
+  //   super(props)
+  //   this.state = {
+  //     value: null,
+  //   }
+  // }
 
   render() {
     return (
-      // stateの値をXにする
-      <button className="square" onClick = { () => { this.setState({value: 'X'})} }>
+      <button className="square" onClick = { () => { this.props.onClick()} }>
         {/* TODO を以下の形に変更 数字が表示される */}
-        {this.state.value}
+        {this.props.value}
       </button>
     );
   }
@@ -26,14 +26,37 @@ class Square extends React.Component {
 
 // 盤面
 class Board extends React.Component {
+  constructor(props){
+    // サブクラスなので（以下略）
+    super(props)
+    this.state = {
+      // Array(9)は9つのemptyの配列を返す fill(null)でそれをnullで満たしている
+      squares: Array(9).fill(null),
+    }
+  }
+
+  handleClick(i) {
+    // const squares = this.state.squares.slice()となっているけど、slice()意味ないのでは??
+    // => 現在の配列を変更する代わりに、配列のコピーを作成するための方便としてのslice()
+    // データを直接いじるのがmutete（書き換え） 不変なのがimmutableな方法
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares})
+  }
+
   renderSquare(i) {
     // return <Square />;
-    return <Square value = {i} />
+    // コンストラクタで定義した中身の配列のうち、自身のインデックスのものを見に行く
+    return(
+      <Square
+        value = {this.state.squares[i]} 
+        onClick = {() => this.handleClick(i)}
+      />
+    )
   }
 
   render() {
     const status = 'Next player: X';
-
     return (
       <div>
         <div className="status">{status}</div>
