@@ -2,16 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-// チュートリアルのクリックを外出ししてみる
-let alertClick = () => {
-  alert('click')
-}
-
 // 正方形のマス目
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick = { alertClick }>
+      <button className="square" onClick = { () => {alert('click') } }>
         {/* TODO を以下の形に変更 数字が表示される */}
         {this.props.value}
       </button>
